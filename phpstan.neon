@@ -12,6 +12,7 @@ parameters:
         - tests/*/Feature/*
         - tests/*/Unit/*
         - tests/*/Datasets/*
+        - src/Casts/*
     checkOctaneCompatibility: true
     checkModelProperties: true
     treatPhpDocTypesAsCertain: false

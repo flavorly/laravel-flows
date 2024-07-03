@@ -2,8 +2,8 @@
 
 namespace Flavorly\LaravelFlows\Casts;
 
-use App\Services\Flows\FlowContext;
-use App\Services\Flows\Models\Flow;
+use Flavorly\LaravelFlows\Facades\FlowContext;
+use Flavorly\LaravelFlows\Models\Flow;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -49,12 +49,7 @@ final class FlowContextCast implements CastsAttributes
                 return $contextClass::fromFlowRaw($decodedValue);
             }
 
-            try {
-                return $contextClass::from($decodedValue);
-            } catch (\Throwable $e) {
-                ray('Error in FlowContextCast', $decodedValue);
-            }
-
+            return $contextClass::from($decodedValue);
         }
 
         /** @var Collection<string,never> $collect */

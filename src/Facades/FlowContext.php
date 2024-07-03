@@ -1,6 +1,6 @@
 <?php
 
-namespace Flavorly\LaravelFlows;
+namespace Flavorly\LaravelFlows\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -15,6 +15,6 @@ final class FlowContext extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return 'flow-context-map';
+        return \Flavorly\LaravelFlows\FlowContextMap::class;
     }
 }

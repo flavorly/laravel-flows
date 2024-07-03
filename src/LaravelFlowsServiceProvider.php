@@ -11,6 +11,7 @@ class LaravelFlowsServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('laravel-flows')
+            ->hasMigration('create_flows_table')
             ->hasConfigFile();
     }
 

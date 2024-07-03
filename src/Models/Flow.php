@@ -1,15 +1,26 @@
 <?php
 
-namespace App\Services\Flows\Models;
+namespace Flavorly\LaravelFlows\Models;
 
-use App\Services\Flows\Casts\FlowContextCast;
-use App\Services\Flows\Enums\FlowStatusEnum;
+use Flavorly\LaravelFlows\Casts\FlowContextCast;
+use Flavorly\LaravelFlows\Enums\FlowStatusEnum;
+use Flavorly\LaravelFlows\Listeners\FlowListener;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
- * @mixin IdeHelperFlow
+ * @property int $id
+ * @property string $uuid
+ * @property string $flowable_type
+ * @property int $flowable_id
+ * @property \Illuminate\Support\Collection|\Spatie\LaravelData\Contracts\BaseData $context
+ * @property \Flavorly\LaravelFlows\Enums\FlowStatusEnum $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $flowable
  */
+#[ObservedBy(FlowListener::class)]
 final class Flow extends Model
 {
     /**

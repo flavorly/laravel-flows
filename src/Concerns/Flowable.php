@@ -2,8 +2,8 @@
 
 namespace Flavorly\LaravelFlows\Concerns;
 
-use App\Services\Flows\Enums\FlowStatusEnum;
-use App\Services\Flows\Models\Flow;
+use Flavorly\LaravelFlows\Enums\FlowStatusEnum;
+use Flavorly\LaravelFlows\Models\Flow;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 

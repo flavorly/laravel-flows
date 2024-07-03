@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Flows\Enums;
+namespace Flavorly\LaravelFlows\Enums;
 
 use Flavorly\LaravelHelpers\Concerns\EnumConcern;
 
