@@ -2,7 +2,6 @@
 
 namespace Flavorly\LaravelFlows\Casts;
 
-
 use App\Services\Flows\FlowContext;
 use App\Services\Flows\Models\Flow;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
