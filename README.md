@@ -27,6 +27,13 @@ You can publish the config file with:
 php artisan vendor:publish --tag="laravel-flows-config"
 ```
 
+You can publish migrations
+
+```bash
+php artisan vendor:publish --tag=":laravel-flows-migrations"
+php artisan migrate
+```
+
 ## Testing
 
 ```bash
