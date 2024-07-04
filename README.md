@@ -24,13 +24,13 @@ composer require flavorly/laravel-flows
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-flows-config"
+php artisan vendor:publish --tag="flows-config"
 ```
 
 You can publish migrations
 
 ```bash
-php artisan vendor:publish --tag="laravel-flows-migrations"
+php artisan vendor:publish --tag="flows-migrations"
 php artisan migrate
 ```
 
