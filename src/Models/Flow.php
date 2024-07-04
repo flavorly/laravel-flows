@@ -32,7 +32,7 @@ final class Flow extends Model
     {
         return [
             'status' => FlowStatusEnum::class,
-            'context' => FlowContextCast::class,
+            'context' => 'array',
         ];
     }
 
