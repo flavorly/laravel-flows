@@ -2,7 +2,6 @@
 
 namespace Flavorly\LaravelFlows\Models;
 
-use Flavorly\LaravelFlows\Casts\FlowContextCast;
 use Flavorly\LaravelFlows\Enums\FlowStatusEnum;
 use Flavorly\LaravelFlows\Listeners\FlowListener;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
