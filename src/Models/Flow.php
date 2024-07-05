@@ -2,7 +2,6 @@
 
 namespace Flavorly\LaravelFlows\Models;
 
-use Flavorly\LaravelFlows\Casts\FlowContextCast;
 use Flavorly\LaravelFlows\Enums\FlowStatusEnum;
 use Flavorly\LaravelFlows\Listeners\FlowListener;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -14,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $uuid
  * @property string $flowable_type
  * @property int $flowable_id
- * @property \Illuminate\Support\Collection|\Spatie\LaravelData\Contracts\BaseData $context
+ * @property array $context
  * @property \Flavorly\LaravelFlows\Enums\FlowStatusEnum $status
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at

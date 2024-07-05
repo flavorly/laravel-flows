@@ -22,8 +22,6 @@ class LaravelFlowsServiceProvider extends PackageServiceProvider
 
     public function registeringPackage(): void
     {
-        $this->app->singleton('flow-context-map', function ($app) {
-            return new FlowContextMap();
-        });
+        // Registering the package
     }
 }
