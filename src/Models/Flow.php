@@ -2,26 +2,27 @@
 
 namespace Flavorly\LaravelFlows\Models;
 
-use Flavorly\LaravelFlows\Enums\FlowStatusEnum;
 use Flavorly\LaravelFlows\Listeners\FlowListener;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $uuid
  * @property string $flowable_type
  * @property int $flowable_id
  * @property array $context
- * @property \Flavorly\LaravelFlows\Enums\FlowStatusEnum $status
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $flowable
  */
 #[ObservedBy(FlowListener::class)]
 final class Flow extends Model
 {
+    use SoftDeletes;
+
     /**
      * Get the attributes that should be cast.
      *
@@ -30,7 +31,6 @@ final class Flow extends Model
     protected function casts(): array
     {
         return [
-            'status' => FlowStatusEnum::class,
             'context' => 'array',
         ];
     }
@@ -43,28 +43,5 @@ final class Flow extends Model
     public function flowable(): MorphTo
     {
         return $this->morphTo();
-    }
-
-    /**
-     * Discard a flow
-     */
-    public function discard(): Flow
-    {
-        $this->updateQuietly(['status' => FlowStatusEnum::discarded]);
-
-        return $this;
-    }
-
-    /**
-     * Clone the current flow and discards the current one
-     */
-    public function renew(): Flow
-    {
-        $this->discard();
-        $flow = $this->replicate(['uuid']);
-        $flow->status = FlowStatusEnum::active;
-        $flow->save();
-
-        return $flow;
     }
 }

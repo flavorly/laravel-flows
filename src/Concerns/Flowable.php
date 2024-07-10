@@ -2,11 +2,13 @@
 
 namespace Flavorly\LaravelFlows\Concerns;
 
-use Flavorly\LaravelFlows\Enums\FlowStatusEnum;
 use Flavorly\LaravelFlows\Models\Flow;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
+/**
+ * @mixin \Illuminate\Database\Eloquent\Model
+ */
 trait Flowable
 {
     /**
@@ -16,7 +18,7 @@ trait Flowable
      */
     public function flows(): MorphMany
     {
-        return $this->morphMany(Flow::class, 'flowable');
+        return $this->morphMany(Flow::class, 'flowable')->withTrashed();
     }
 
     /**
@@ -26,9 +28,6 @@ trait Flowable
      */
     public function flow(): MorphOne
     {
-        return $this
-            ->morphOne(Flow::class, 'flowable')
-            ->latestOfMany()
-            ->where('status', FlowStatusEnum::active->value);
+        return $this->morphOne(Flow::class, 'flowable')->whereNull('deleted_at');
     }
 }
