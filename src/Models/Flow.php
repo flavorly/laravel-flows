@@ -47,7 +47,6 @@ final class Flow extends Model
 
     /**
      * Renews the flow
-     * @return void
      */
     public function renew(): void
     {
