@@ -44,4 +44,15 @@ final class Flow extends Model
     {
         return $this->morphTo();
     }
+
+    /**
+     * Renews the flow
+     * @return void
+     */
+    public function renew(): void
+    {
+        $flowable = $this->flowable;
+        $this->delete();
+        $flowable->flows()->create();
+    }
 }
