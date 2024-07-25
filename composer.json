@@ -20,8 +20,6 @@
         "flavorly/laravel-helpers": "*",
         "illuminate/contracts": "*",
         "laravel/framework": "*",
-        "league/iso3166": "^4.3",
-        "spatie/laravel-data": "*",
         "spatie/laravel-package-tools": "^1.16",
         "spatie/laravel-typescript-transformer": "^2.4"
     },
@@ -40,7 +38,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Flavorly\\LaravelFlows\\": "src"
+            "Flavorly\\LaravelFlows\\": "src/",
+            "Flavorly\\LaravelFlows\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {

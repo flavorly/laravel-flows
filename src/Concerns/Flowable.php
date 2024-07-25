@@ -3,8 +3,8 @@
 namespace Flavorly\LaravelFlows\Concerns;
 
 use Flavorly\LaravelFlows\Models\Flow;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Model
@@ -14,20 +14,30 @@ trait Flowable
     /**
      * Returns all the flows for the given model
      *
-     * @return MorphMany<Flow>
+     * @return HasMany<Flow>
      */
-    public function flows(): MorphMany
+    public function flows(): HasMany
     {
-        return $this->morphMany(Flow::class, 'flowable')->withTrashed();
+        return $this->hasMany(Flow::class)->withTrashed();
     }
 
     /**
      * Returns the Latest flow
      *
-     * @return MorphOne<Flow>
+     * @return BelongsTo<Flow,\Illuminate\Database\Eloquent\Model>
      */
-    public function flow(): MorphOne
+    public function flow(): BelongsTo
     {
-        return $this->morphOne(Flow::class, 'flowable')->whereNull('deleted_at');
+        return $this->belongsTo(Flow::class)->whereNull('deleted_at');
+    }
+
+    /**
+     * Renews the flow for this model
+     */
+    public function flow_renew(): Flow
+    {
+        $this->flow()->delete();
+
+        return $this->flow()->create();
     }
 }

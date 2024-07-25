@@ -2,25 +2,26 @@
 
 namespace Flavorly\LaravelFlows\Models;
 
+use Flavorly\LaravelFlows\Database\Factories\FlowFactory;
 use Flavorly\LaravelFlows\Listeners\FlowListener;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property string $flowable_type
- * @property int $flowable_id
  * @property array $context
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property \Carbon\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $flowable
  */
 #[ObservedBy(FlowListener::class)]
 final class Flow extends Model
 {
+    /** @use HasFactory<FlowFactory> */
+    use HasFactory;
+
     use SoftDeletes;
 
     /**
@@ -36,22 +37,10 @@ final class Flow extends Model
     }
 
     /**
-     * Returns the related flowable model
-     *
-     * @return MorphTo<Model,Flow>
+     * Create a new factory instance for the model.
      */
-    public function flowable(): MorphTo
+    protected static function newFactory(): FlowFactory
     {
-        return $this->morphTo();
-    }
-
-    /**
-     * Renews the flow
-     */
-    public function renew(): void
-    {
-        $flowable = $this->flowable;
-        $this->delete();
-        $flowable->flows()->create();
+        return FlowFactory::new();
     }
 }

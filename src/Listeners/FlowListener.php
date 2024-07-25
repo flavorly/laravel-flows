@@ -6,10 +6,7 @@ use Flavorly\LaravelFlows\Models\Flow;
 
 final class FlowListener
 {
-    public function creating(Flow $model): void
-    {
-        $model->flowable->flows()->whereNull('deleted_at')->delete();
-    }
+    public function creating(Flow $model): void {}
 
     public function created(Flow $model): void {}
 
